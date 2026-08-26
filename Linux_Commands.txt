@@ -1,0 +1,334 @@
+currently ec2-user --->togo to root user 1.sudo su -  2.sudo -i
+root to ec2 ---> exit or ctrl+d
+
+12/8/26 system commands
+------------------------
+
+1. uname ---> os name
+2. uname -r ---> version of os
+3. uname -a ---> complete info of os
+
+1. uptime --->how long your server is in running state
+2. uptime -p --->only shows uptime hours
+
+1. who ---> who are connected(users)
+2. whoami --->current user(ec2 or root)
+
+1. hostname ---> displays hostname
+2. hostname -i (or) ip addr (or) ip route (or) ifconfig--->to know private ip
+3. curl ifconfig.me ---->to know public ip
+4. hostnamectl set-hostname name --->ex: hostnamectl set-hostname jyothi--->sets hostname to jyothi
+
+1. cal -->current month calendar
+2. cal year-->ex: cal 2026 -->2026 calendar
+3. cal month year--> ex: cal 04 2025--->April 2025 calendar
+
+1. date ---> displays date with time
+2. date +"%d" ---> only date
+3. date +"%m" ---> only month
+4. date +"%y" ---> only year
+5. date +"%H" ---> only hours
+6. date +"%M" ---> only minutes
+7. date +"%S" ---> only seconds
+8. date +"%D" ---> month date year format
+9. date +"%F" ---> year month date
+10. date +"%A" ---> displays only day
+11. date +"%B" ---> only month
+
+1. timedatectl --->displays timezone
+2. timedatectl set-timezone Asia/Kolkata ---> changes to ist
+
+1. ps --->to know which processors are running
+2. kill -9 pid number --> ex: kill -9 4747 --->removes that 4747 unwanted processor
+3. history -->displays all used commands
+
+
+hardware commands
+-------------------
+1. lscpu (or) cat /proc/cpuinfo --->cpu info
+2. free (or) free -h ---> ram info
+3. lsblk ---> list of block devices
+4. fdisk -l --->ebs volumes
+5. df -h --->ebs how much used and left
+
+
+13-8-26 file commands
+----------------------
+regular files ---> text based files
+---------------
+1. touch name ----> ex: touch hema ---> helps to create file
+2. touch name1 name2 name3 ----> ex: touch ramesh jyothi niwansh ---> creates files for given names 
+3. touch name1.txt name2.pdf name3.css ---> ex: touch java.txt spring.pdf devops.css ---> creates files with extensions but inside file the format is text only
+4. touch name{1..4} ---> ex: touch dakshith{1..4} ---> only 2dots--> creates files dakshith1,dakshith2,dakshith3,dakshith4 in sequential order
+5. touch name{1..2}.txt ---> ex: touch myfile{1..2}.txt ---> creates myfile1.txt myfile2.txt in sequential order
+
+1. ll (or) ls -l ----> gives complete info of files/folders created in alphabetical order
+2. ls ----> gives only file/folder names in alphabetical order
+3. ll -r ----> gives info in reverse alphabetical order
+4. ll -t ----> gives info based on time of the folder created...latest will be displayed in first place
+5. ll -a (or) ls -al ----> gives complete info of files/folders created in alphabetical order including hidden files
+
+1. rm name ---> rm jyothi ---> removes file named jyothi ---> will ask permission to remove
+2. rm -f name1 name2 name3 ---> rm -f hema ramesh niwansh ---> removes files named hema ramesh niwansh --> we have give -f means forcefully doesnt need permission
+3. rm -f name1.txt name2.pdf name3.css ---> ex: rm -f java.txt spring.pdf devops.css --> removes the specified files
+4. rm -f name{2..3} --->  ex: rm -f dakshith{2..3} ---> removes files dakshith 2-3
+5. rm -f name{1..2}.txt ---> ex: rm -f myfile{1..2}.txt -->removes myfiles1.txt myfiles2.txt
+6. rm -f * ---> removes all files without permission
+7. rm -f a* ---> removes all files that starts with a letter without permission
+8. rm -f myfiles* ---> removes all files that starts with name myfiles without permission
+9. rm -f *.txt ---> removes all .txt files without permission
+you can also give command without -f but it asks for permission then you need to give yes
+Once you remove data you cannot undo it unless you have taken backup for them
+
+directory files ----> folders
+-----------------------------
+1. mkdir name ---> mkdir jyothi ---> creates a folder/directory jyothi
+2. mkdir name1 name2 name3 ---> mkdir hema ramesh niwansh ---> creates multiple folders with given names
+3. mkdir name{1..2} ---> mkdir suri{1..2} ---> creates suri1 suri2 folders
+
+1. rmdir ---> helps to remove folders which are empty
+2. rmdir name ---> rmdir jyothi ---> removes jyothi
+3. rmdir name1 name2 ---> rmdir hema ramesh ---> removes hema ramesh
+4. rmdir name{1..2} ---> rmdir suri{1..2} ---> removes suri1 suri2 folders
+5. rmdir * ---> removes all empty folders
+6. rmdir j* ---> removes all folders that begin with j
+7. rmdir name* --->rmdir suri* ---> removes folders starting with suri
+
+1. a. create a folder and goto that created folder ---> mkdir and cd(change directory)
+      mkdir name enter cd name ---> mkdir jyothi enter cd jyothi ---> jyothi folder is created and you are now in jyothi floder
+   b. create another folder in jyothi folder and goto that created folder
+      mkdir ramesh enter cd ramesh---> you are in ramesh now
+   c. to see where you are currently ---> pwd(present working directory)---> root/jyothi/ramesh
+   d. create a folder in ramesh and goto that created folder ---> mkdir hema enter cd hema ---> now in hema
+   e. create a folder in hema and goto that created folder ---> mkdir dakshith enter cd dakshith ---> now in dakshith
+      pwd ---> root/jyothi/ramesh/hema/dakshith
+
+2. a. to goto root directory irrespective of where you are ---> cd  ---> now in root ---> to see give pwd command
+   b. to goto previous folder from where you came to root ---> cd -  ---> now in dakshith again
+   c. Togo to previous folder from last folder --> cd .. ---> from dakshith to hema ---> now in hema
+   d. Togo to next folder ---> cd foldername ---> here you can use cd - (or) cd dakshith as it is last folder cd - also work
+   e. Togo to 2 folders back from last folder  ---> cd ../..  ---> from dakshith to ramesh ---> now in ramesh
+   f. now to go to previous folder from where you came to back ---> cd - (or) cd hema/dakshith---> from ramesh to dakshith ---> now in dakshith
+
+3. suppose dakshith nundi hema ki velli ---> (cd..),,,hema nundi jyothi ki velte ---> (cd../..)
+   a. now jyothi to ramesh vellali ante --> (cd ramesh).....ramesh nundi dakshith ki vellali ante (cd hema/dakshith)
+   b. jyothi to hema vellali ante (cd -)--->hema bcoz hema came directly to jyothi
+
+Files and Folders
+-------------------
+1. root --> mkdir jyothi
+   touch foldername/filename ---> creates file inside existing folder without going into folder
+   touch jyothi/hema ---> creates hema file inside jyothi as jyothi exists
+2. ll foldername ---> ll jyothi ---> lists the files without going into folder
+3. mkdir foldername1/foldername2 ---> creates folder inside existing folder without going into folder if foldername1 exits
+   mkdir jyothi/dakshith ---> creates dakshith folder inside jyothi
+4. mkdir -p folder1/folder2 ---> creates folder inside folder even though folder 1 name doesnt exists
+   mkdir -p tharun/gouthami ---> creates tharun... creates gouthami inside tharun folder
+5. now you are in root 
+   rm -rf * ---> removes all folders and files inside current folder (root) but folder(root) remains same
+6. rm -rf foldername ---> rm -rf tharun --> removes all files and folders including foldername(tharun)
+7. rm -rf foldername/* ---> rm -rf jyothi/* ---> removes everything inside folder(jyothi) but folder(jyothi) remains same
+
+
+
+14/8/26 Editor
+---------------
+create a file..open file...to read data in file we use---> cat filename
+to overwrite data ---> cat>filename ---> give data --> ctrl+d ---> cat filename -- you will see data
+to add data ----> cat>>filename ---> give data ---> ctrl+d ---> cat filename --- you will see added data to previous data
+
+vim filename (or) vi filename ---> used to add data in existing files (or) it will create newfile..you will see filename[new] at bottom..data needs to be entered
+to add data you need to go to insert mode by clicking on i...then give data you want...press esc to go to command mode...to save click :wq which means save and quit
+now you will be in command prompt... to read added data use cat filename
+
+command mode commands
+----------------------
+move
+gg ---> goes to first line
+G ---> goes to last line
+3gg --> goes to 3rd line
+7gg --> goes to 7th line
+(or)
+shift+colon+lineno ---> goto that specific line
+shift:2 --> goes to 2nd line
+shift:4 --> goes to 4th line
+shift:8 --> goes to 8th line
+
+copy
+yy --> copies the line where the cursor is present
+4yy ---> copies 4 lines from where the cursor is present
+10yy ---> copies 10 lines from where the cursor is present
+
+paste
+p ---> paste the line below the curser is present
+3p --> paste the line 3 times below the curser is present
+6p --> paste the line 6 times below the curser is present
+
+delete
+dd -->delete the line where the cursor is present
+2dd --> deletes 2lines from where the cursor is present
+10dd --> deletes 10lines from where the cursor is present
+
+undo
+u ---> undo the changes -- reverse the last action
+
+redo
+ctrl+r ---> redo the action -- brings the changes back
+
+shift+colon+set number --> shift:set number ---> sets numberline
+shift+colon+set nonumber --> shift:set nonumber ---> removes numberline
+
+search
+/data (or) ?data ---> search for specific data
+/how (or) ?how ---> searches for how
+
+replace a word
+shift+colon+%s/olddata/newdata/g ---> shift:%s/azure/aws/g ---> replaces azure with aws in all sentences
+ex : azure is azure of azure ---> aws is aws of aws
+     azure is one of cloud        aws is one of cloud
+shift+colon+%s/olddata/newdata/ ---> shift:%s/azure/aws/ ---> replaces azure with aws only once if repeated more than once in a line and replaces in other all lines
+ex : azure is azure of azure ---> aws is azure of azure
+     azure is one of cloud        aws is one of cloud
+
+insert mode commands
+-------------------------
+defaultly you are in command mode when you excute vim filename (or) vi filename
+togo to insert mode ---> press i..if you will see insert word then you are in insert mode...add/delete/edit data manually
+Togo to command from insert ---> press esc key
+now you are in command mode,, Togo to ending of line ---> A ---> you will be at the end of line in insert mode
+now you are in command mode,, Togo to starting of line ---> I ---> you will be at the start of line in insert mode
+now you are in command mode,, to create a new line above cursor ---> O ---> A new line is created above cursor and you are in insert mode
+now you are in command mode,, to create a new line below cursor ---> o ---> A new line is created below cursor and you are in insert mode
+
+to save data ---> shift+colon+w ---> shift:w
+to quit vi editor ---> shift+colon+q ---> shift:q
+to save data and quit at the same time ---> shift+colon+w+q ---> shift:wq 
+to quit vi editor without saving ---> shift_colon+q! ---> shift:q!
+
+1.copy ---> cp source destination
+  a. copies data from source to destination but overwrites data in destination if present...
+     touch devops --> cp jyothi devops --> all data from jyothi is copied and overwritten in devops
+  b. if you dont have destination file it will create new one and copies data to new one... you can even copy folders 
+     assume no course file is created ---> cp devops course ---> course file is created and data from devops is overwritten in course
+  c. you can give any no of file in src but it always takes last one as dest ---> in this case dest should be folder not file 
+     --> cp jyothi devops flm --> it takes flm folder as dest and remaining 2 as src..if flm is file it wont take multiple files as src
+2.the drawback with cp is it overwrites data,,to add data without overwriting
+   cat devops >> course ---> reads data from devops and add it to course data
+3.move --> used to move files&folders and renaming them
+  a. mv src dest ---> mv ramesh devops ---> moves ramesh data to devops by overwriting in devops
+  b. mv src newname ---> renames src to new name ---> mv ramesh dakshith ---> renames ramesh with dakshith
+4. to copy all files in folder --> cp folder1/* folder2 ---> all files in folder1 is copied to folder 2
+5. to copy files and folders ---> cp -r folder1/* folder2 
+   cp folder1 folder2 ---> folder1 as whole is copied to folder2
+
+17/8/26
+--------------
+1.create a file in vi editor...some and past some data by going to i and esc...save it...read file using cat
+  vi jyothi...cat jyothi
+  a. to give no to the data present in jyothi --> cat -n filename ---> cat -n jyothi
+  b. to print first 10 lines ----> head filename ---> head jyothi
+  c. to print last 10 lines ---> tail filename ---> tail jyothi
+  d. to print specific line --> sed -n 'nump' filename ---> sed -n '12p' jyothi ---> prints 12th line...here p stands for paste or print
+  e. to print from-to specific lines ---> sed -n 'from,top' filename ---> sed -n '12,15p' jyothi --> prints from 12th to 15th line
+  f. to print wordcount ---> wc filename ---> wc jyothi ---> gives no of lines, words, characters
+  g. to print only lines --> wc -l filename --> wc -l jyothi
+  e. to print only words ---> wc -w filename ---> wc -w jyothi
+  f. to print only characters ---> wc -c filename ---> wc -c jyothi
+
+user commands
+--------------
+1. getent passwd (or) cat /etc/passwd ---> gives the total list of users
+2. useradd username (or) adduser username ---> useradd ramesh ---> user is added ---> ramesh is added
+   to know ramesh is added or not ---> getent passwd ---> gives list of users along with ramesh
+   to know only ramesh is added or not ---> id username ---> id ramesh ---> gives whether specific user is add or not
+3. adduser flm ---> goto home... cd /home ---> ll ...you will see a folder created with name flm...it means if user flm perform any action..it will be in that folder 
+   a. to delete a user ---> userdel -r username ---> r means recursive ---> userdel -r ramesh ---> here user along with the folder created will be deleted
+   b. userdel username ---> userdel ramesh ---> here only user is deleted and folder created wont be deleted so we need to use -r
+4. su - username ---> su - jyothi ---> you will switch to jyothi...once you switch you cant see the files/folders of previous users
+5. adduser tharun --> to set password to user ---> passwd username ---> passwd tharun --> new password, repeat password ---> you can see entered password in Linux
+   now if you switch to tharun from root user it wont ask password bcoz root has all acess
+   now goto ec2 user --> switch to tharun ---> now you will be asked to enter password bcoz you are switching from ec2 to tarun
+
+group command
+---------------
+if i need to give acess to 10 user for a file...creating a group to 10 users and giving acess is better than adding each user induidually and give acess
+1. groupadd username (or) addgroup username ---> used to create group
+2. getent group (or) cat /etc/group ---> to see lists of group
+3. to add user to that group ---> usermod -aG groupname username ---> a for add G for group
+4. to delete group ---> groupdel groupname --> here groups will be deleted not users
+you cant add/delete multiple users/groups at the same time
+
+permission command
+----------------------
+1.(-) ---> regular text files
+  d ---> directory files
+2.permission commands are commands for giving permission for users...like read,write,execute,-(nothing)
+  r--read value --4
+  w--write    --2
+  x--execute ---1
+  - ..nothing --0
+3.if you take one permission rw-r--r-- ---> first 3 belongs to user, next 3 belongs to group, last to others
+  rw- ---> 4+2+0=6
+  r-- ---> 4+0+0=4
+  r-- ---> 4+0+0=4
+  total is 644
+4. create files aws azure ibm ---> ll --> now you want to give full permission rwx to aws ---> 
+   chmod value filename ---> chmod 777 aws  --> chmod means changemod
+   chmod 644 * ---> give rw,w,w permissions to all files present
+   chmod 777 aws azure ibm ---> you can give permissions to multiple files at the same time
+5. chmod value foldername ---> chmod 777 devops
+   chmod 777 folder -R ---> change permissions to folder and files inside folder
+   chmod 777 folder/* ---> change permission to files present in a folder
+
+
+18/8/26 change user and group
+----------------------------------
+
+when you create file in root...default owners are root root...
+1. to change user ---> chown username filename ---> chown mustafa aws
+2. to change group ---> chgrp groupname filename ---> chgrp devops aws
+3. to change user and group at the same time --> chown username:groupname filename --> chown mustafa:devops azure
+4. to change user and group at the same time for multiple files --> chown username:groupname filename1 filename2 ---> chown mustafa:devops azure gcp
+   we can also change user for multiple files at the same time ---> chown username filename1 filename2
+   lly change group for multiple files at the same time ---> chgrp groupname filename1 filename2
+
+5. to change user and group for folder and files inside folder ---> chown -R username:groupname foldername ---> chown -R mustafa:devops myfolder
+6. to change user and group for files inside folder ---> chown username:groupname foldername/* ---> chown mustafa:devops myfolder/*
+7. to change user and group for folder but not files inside folder ---> chown username:groupname foldername ---> chown mustafa:devops myfolder
+
+search for word commands
+-----------------------------
+1. grep is the keyword used to search for words
+2. grep "word" filename ---> grep "mode" myfile ---> give the lines where the word mode is present
+3. grep -n "word" filename ---> grep -n "mode" myfile ---> give the lines where the word mode is present along with line number
+4. grep -in "word" filename ---> grep -in "mode" myfile ---> ignores case sentitive and give the lines where the word mode is present along with line number
+   mode, Mode, MODE etc are all displayed as we added i means ignore case sensitive
+5. grep -ic "word" filename ---> grep -ic "mode" myfile ---> ignores case sentitive give the count how many times mode has been repeated
+6. grep -in -e "word1" -e "word2" -e "word3" filename ---> grep -in -e "mode" -e "mustafa" -e "command" myfile --> ignores case sentitive & searches for multiple words
+
+search for files command
+----------------------------
+to search files we have 2 methods---> 1. find 2. locate
+1. to search with name ---> find path -name <name> ----> find . -name jyothi ---> . dot represents current directory
+2. to search for specific file type with name ---> find path -type f -name <name> (or) find path -type d -name <name> ----> find . -type f -name aws 
+   f---> regular file    d--> directory file
+   aws name tho Unna regular files ni print chestundhi
+3. to search for files with specific user ---> find path -type f -user <username> ---> find . -type f -user jyothi 
+4. to search for files with specific group ---> find path -type f -group <groupname> ---> find . -type f -group jyothi 
+5. to search for files with specific permission ---> find path -type f -perm <permvalue> ---> find . -type f -perm 777
+6. locate filename ---> updatedb ---> locate jyothi ---> updatedb ---> when you use locate always update db manually as automatically it takes take to update
+
+
+19/8/26 filesystems
+-------------------------
+1. to get anything from internet ---> wget link_address
+2. if the file is in zip, to unzip ---> unzip filename
+3. if the file is tar.gz, to unzip ---> tar -xvf filename
+4. assume i have some files and wanted to zip them ---> zip name.zip file1 file2 file3
+5. to unzip them again ---> unzip name.zip
+
+webserver downlaod ---> yum install nginx -y
+1. to check status/active ---> systemctl status nginx (or) service nginx status
+2. to start ---> systemctl start nginx (or) service nginx start
+   copy public ip ---> paste in tab with http port 80 --> need to open ---> if not add security inbound rule by taking http port 80 ipv4 anywhere
+3. to stop ---> systemctl stop nginx (or) service nginx stop
