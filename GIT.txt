@@ -1,0 +1,49 @@
+20/8/26 GIT
+-----------
+1. to install git ---> yum install git -y
+2. to know whether it is downloaded or not ---> git --version (or) git -v
+3. for every folder you need to init git to get .git folder to track ---> git init .
+4. when you create file, it will be in WD which means files are untracked ---> git status --> you will see untracked files
+6. to move or get the file tracked you need to move to SA ---> git add filename ---> you can add/modify data in SA
+7. after you add/modify you need to commit it to see history ---> git commit -m "description" file name
+8. to see commits we made --> git log
+9. to change author name and email ---> git config --global user.name name --> git config --global user.email email-id
+10. to know what changes we made ---> git show commitid
+11. to see commits in one line ---> git log --oneline
+12. to see last 2 commits ---> git log -2 --oneline ---> 3 commits ---> git log -3 --oneline
+13. to get tracked multiple  or to move multiple file to SA --> git add *
+14. to commit multiple files ---> git commit -m "description" .
+15. to ignore any file ---> .gitignore
+
+21/8/26
+---------
+GIT Reset, Reflog, Restore, Revert
+-------------------------------------
+1. to remove commit along with data ---> git reset --hard HEAD~1 --->1 represents latest 1 commit
+2. to remove only commit but data needs to be present ---> git reset --soft HEAD~1
+3. to know git history ---> git reflog
+4. to recover back changes made using hard ----> git cherry-pick commited-id
+5. to untack a tracking file ---> git restore --staged filename (or) git rm --cached filename
+6. to restore deleted file with data ---> git restore filename
+7. to remove data in specific commit ---> git revert commit-id
+
+24/8/26
+--------
+GIT Branches
+--------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
